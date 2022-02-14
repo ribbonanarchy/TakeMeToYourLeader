@@ -1,0 +1,12 @@
+{
+    "word": ["Noun",
+     "Adjective",
+     "Verb",
+     "Adverb",
+     "Pronoun",
+     "Preposition",
+     "Conjuction",
+     "Interjection"],
+
+     "sentence": ""
+}
