@@ -1,7 +1,7 @@
 # TakeMeToYourLeader
 
 ## Description
-Take Me to Your Leader is a web based game in which you control an alien that is sent to Earrth from outer space to learn the English language. This is the first step to help your species eventually conquer Earth. Using this application, you will create sentences to familiarize yourself with the English language, and save them to study later.
+Take Me to Your Leader is a web based game in which you control an alien that is sent to Earth from outer space to learn the English language. This is the first step to help your species eventually conquer Earth. Using this application, you will create sentences to familiarize yourself with the English language, and save them to study later.
 
 ## Motivation
 
