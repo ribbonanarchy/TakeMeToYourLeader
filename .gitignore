@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# DS_Store file unique to macOS for storing internal directory attributes
+.DS_Store
