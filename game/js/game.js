@@ -4,7 +4,7 @@ gameScene.preload = function(){
     this.load.image('player', 'assets/images/gray-alien.png');
     this.load.image('enemy', 'assets/images/ball.png');
 
-    this.load.json('text', './text.json');
+    this.load.json('text', './wordlist.json');
     this.load.json('sentence', './text.json');
 };
 
@@ -16,21 +16,28 @@ gameScene.create = function(){
     let phaserJSON = this.cache.json.get('text');
     gameScene.sentenceJSON = this.cache.json.get('sentence');
 
+    // Create a group that all the words will be contained in
     this.words = gameScene.physics.add.group();
 
+    // Create 8 random words and populate the screen with them
     for (let i=0; i<8; i++){
         let xArray = [1/10, 1/10, 1/3, 1/3, 3/5, 3/5, 4/5, 4/5];
         let yArray = [1/3, 2/3, 1/8, 7/8, 1/8, 7/8, 1/3, 2/3];
 
-        let text = gameScene.add.text(xArray[i]*gameW, yArray[i]*gameH, phaserJSON.word[i], {font: "20px Arial", fill: "rgb(0, 0, 0)"});
+        let randomNumb = Math.floor(Math.random()*12447);
+
+        let text = gameScene.add.text(xArray[i]*gameW, yArray[i]*gameH, phaserJSON[randomNumb], {font: "20px Arial", fill: "rgb(0, 0, 0)"});
         text.immovable = true;
         gameScene.words.add(text);
     }
 
+    // Create our alien and add physics to the sprite
     this.player = this.physics.add.sprite(gameW/2, gameH/2, 'player').setScale(0.15, 0.15);
 
+    // Add a collider between our alien and the words... When they collide they initiate the 'logMsg' function
     this.physics.add.collider(this.player, this.words, logMsg);
 
+    // Create a variable that stores our mouse input coordinates
     this.mouse = this.input.mousePointer;
 
 
