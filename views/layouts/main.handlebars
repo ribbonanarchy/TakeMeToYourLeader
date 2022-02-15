@@ -15,7 +15,7 @@
           <a href="/">Take Me to Your Leader!</a>
         </h1>
         <nav>
-          <!-- Conditionally render login or logout links -->
+          <!-- Render login or logout based on session status -->
           {{#if logged_in}}
             <a href="/profile">Profile</a>
             |
@@ -26,14 +26,14 @@
         </nav>
       </header>
       <main class="container container-fluid mt-5">
-        <!-- Render the sub layout -->
+        <!-- Main body -->
         {{{body}}}
       </main>
       <footer>
       </footer>
     </div>
 
-    <!-- Render script for logged in users only -->
+    <!-- Logout is only rendered when user is logged in -->
     {{#if logged_in}}
       <script src="/js/logout.js"></script>
     {{/if}}
