@@ -14,12 +14,14 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/game', async (req, res) => {
-  if(req.session.logged_in) {
-    res.render('game');
-  } else {
-    res.redirect('/login');
-    return;
-  }
+  // if(req.session.logged_in) {
+  //   res.render('game');
+  // } else {
+  //   res.redirect('/login');
+  //   return;
+  // }
+  res.render('game');
+
 });
 
 router.get('/login', (req, res) => {
