@@ -1,0 +1,10 @@
+[
+    {
+        "text": "Hello, this is a sentence.",
+        "user_id": 1
+    },
+    {
+        "text": "Hello, this is also a sentence.",
+        "user_id": 2
+    }
+]

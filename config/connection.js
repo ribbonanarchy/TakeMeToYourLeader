@@ -1,4 +1,3 @@
-//used node workaround for .env
 require('dotenv').config({ path: require('find-config')('.env') });
 const Sequelize = require('sequelize');
 
