@@ -15,7 +15,16 @@ const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: 'Super secret secret',
-  cookie: {},
+  cookie: {
+    // maxAge sets the maximum age for the session to be active. Listed in milliseconds.
+    maxAge: 900000, // 15 min
+    // httpOnly tells express-session to only store session cookies when the protocol being used to connect to the server is HTTP.
+    httpOnly: true,
+    // secure tells express-session to only initialize session cookies when the protocol being used is HTTPS. Having this set to true, and running a server without encryption will result in the cookies not showing up in your developer console.
+    secure: false,
+    // sameSite tells express-session to only initialize session cookies when the referrer provided by the client matches the domain out server is hosted from.
+    sameSite: 'strict',
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
