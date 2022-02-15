@@ -6,11 +6,11 @@ let phaserJSON;
 let sentenceJSON;
 
 gameScene.preload = function(){
-    this.load.image('player', 'assets/images/gray-alien.png');
-    this.load.image('enemy', 'assets/images/ball.png');
+    this.load.image('player', '/assets/images/gray-alien.png');
+    this.load.image('enemy', '/assets/images/ball.png');
 
-    this.load.json('text', './wordlist.json');
-    this.load.json('sentence', './text.json');
+    this.load.json('text', '/json/wordlist.json');
+    this.load.json('sentence', '/json/text.json');
 };
 
 gameScene.create = function(){
