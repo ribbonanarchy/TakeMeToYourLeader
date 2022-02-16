@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
     const newSentence = await Sentence.create({
       text: req.body.sentence,
-      user_id: 1,
+      user_id: req.session.user_id,
     });
 
     res.status(200).json(newSentence);
