@@ -20,6 +20,11 @@ let wordDisplay = document.getElementById('word-counter');
 let btnPlural = document.getElementById('plural');
 let btnSimple = document.getElementById('simple');
 let btnParticiple = document.getElementById('participle');
+let btnFinalize = document.getElementById('finalize');
+
+// Sentence posting button starts off hidden
+btnFinalize.style.visibility = "hidden";
+btnFinalize.style.display = "none";
 
 // Used to know what words in our word array need to be updated... When we click verb/noun edits
 let nounIndex = 0;
@@ -76,8 +81,10 @@ gameScene.create = function(){
 gameScene.update = function() {
 
     // When you click on the screen the alien moves to the cursor location
-    if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y) && (gameScene.input.x < gameW-2) && (0 < gameScene.input.x)){
+    if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y) && (gameScene.input.x < gameW) && (0 < gameScene.input.x)){
         gameScene.physics.moveTo(gameScene.player, gameScene.input.x, gameScene.input.y, 300);
+        console.log("x: " + mouse.x)
+        console.log("y: " + mouse.y)
     }
     else {
         gameScene.player.setVelocity(0,0);
@@ -91,14 +98,20 @@ function logMsg(player, words){
     sentenceDisplay.textContent = sentenceJSON.sentence;
 
     // Display to the user how many words they have left
-    wordDisplay.textContent = "You have " + (10 - wordCount) + " Words Left!";
+    if(wordCount < 10){
+        wordDisplay.textContent = "You Need Atleast " + (10 - wordCount) + " More Words!";
+    }
 
     // When we have 10 words in our string then post our sentence to the sequelize database
-    if(wordCount === 10){
-        postSentence();
-        sentenceDisplay.textContent = "Create a Sentence...";
-        wordDisplay.textContent = "You have 10 Words Left!";
-        wordCount = 0;
+    if((wordCount >= 10) && (wordCount !== 20)){
+        wordDisplay.textContent = "You Can Use " + (20 - wordCount) + " More Words!";
+
+        // Display Button for Posting Sentence
+        btnFinalize.style.visibility = "visible";
+        btnFinalize.style.display = "block";
+    }
+    else if(wordCount === 20){
+        finalizeSentence();
     }
 
     reset();
@@ -122,7 +135,6 @@ const postSentence = async () => {
 
 // Reset the words and alien location
 function reset(){
-
     // Clear off all the old words
     gameScene.words.clear(true);
 
@@ -326,18 +338,31 @@ function pluralNoun(){
     }
 }
 
+function finalizeSentence(){
+    postSentence();
+
+    // Hide submit sentence button
+    btnFinalize.style.visibility = "hidden";
+    btnFinalize.style.display = "none";
+
+    sentenceDisplay.textContent = "Create a Sentence...";
+    wordDisplay.textContent = "You Need Atleast 10 More Words!";
+    wordCount = 0;
+}
+
 let config = {
     type: Phaser.AUTO,
     width: 640,
     height: 360,
+    parent: 'parent',
     backgroundColor: "rgb(68, 122, 54)",
     scene: gameScene,
     physics:{
         default:'arcade',
         arcade:{
-            gravity:{y:0}
+            gravity:{ y:0 }
         }
-    }
+    },
 };
 
 let game = new Phaser.Game(config);
