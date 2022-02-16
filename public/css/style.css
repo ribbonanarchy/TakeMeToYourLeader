@@ -33,6 +33,10 @@ header {
   border-bottom: 1px solid var(--secondarycolor);
 }
 
+h3 {
+  color: var(--tertiarycolor);
+}
+
 .btn {
   background-color: var(--secondarycolor);
 }
@@ -65,7 +69,7 @@ header {
   text-decoration: underline;
 }
 
-#game{
+#game {
   position: absolute;
   top: 0px;
 }
