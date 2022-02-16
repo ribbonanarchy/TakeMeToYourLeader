@@ -252,7 +252,6 @@ function pluralNoun(){
     let currentNoun = gameScene.words.children.entries[0].text;
     let stringLength = currentNoun.length;
 
-
     // Turn the word plural or singular
     if(!plural){
         btnPlural.style = "box-shadow: 0 0 5px 5px green";
@@ -260,7 +259,7 @@ function pluralNoun(){
         switch(currentNoun[stringLength - 1]){
             case "y":
                 // Check if the letter before y is a vowl?
-                if(currentNoun[stringLength - 2] === ("a" || "e" || "i" || "u")){
+                if((currentNoun[stringLength - 2] === "a") || (currentNoun[stringLength - 2] === "e") || (currentNoun[stringLength - 2] === "i") || (currentNoun[stringLength - 2] === "o")){
                     gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "s";
                     nounEnd = "";
                     break;
@@ -273,16 +272,28 @@ function pluralNoun(){
                 }
             case "s":
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "es";
-                nounEnd = "oxs";
+                nounEnd = "oxsh";
                 break;
             case "x":
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "es";
-                nounEnd = "oxs";
+                nounEnd = "oxsh";
                 break;
             case "o":
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "es";
-                nounEnd = "oxs";
+                nounEnd = "oxsh";
                 break;
+            case "h":
+                // Check if the letter before h is c or s?
+                if((currentNoun[stringLength - 2] === "c") || (currentNoun[stringLength - 2] === "s")){
+                    gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "es";
+                    nounEnd = "oxsh";
+                    break;
+                }
+                else{
+                    gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "s";
+                    nounEnd = "";
+                    break;
+                }
             case "f":
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text.slice(0, -1)
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "ves";
@@ -301,7 +312,7 @@ function pluralNoun(){
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text.slice(0, -3)
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text + "y";
                 break;
-            case "oxs":
+            case "oxsh":
                 gameScene.words.children.entries[0].text = gameScene.words.children.entries[0].text.slice(0, -2)
                 break;
             case "f":
