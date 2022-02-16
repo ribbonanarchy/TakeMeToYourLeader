@@ -4,13 +4,18 @@ let gameW;
 let gameH;
 let phaserJSON;
 let sentenceJSON;
+let mouse;
+let wordTypeArray = ['nouns', 'adjectives', 'verbs', 'adverbs', 'pronouns', 'prepositions', 'conjuctions', 'articles', 'adjectives', 'verbs'];
 
 gameScene.preload = function(){
-    this.load.image('player', 'assets/images/gray-alien.png');
-    this.load.image('enemy', 'assets/images/ball.png');
+    this.load.image('player', '/assets/images/gray-alien.png');
+    this.load.image('enemy', '/assets/images/ball.png');
 
-    this.load.json('text', './wordlist.json');
-    this.load.json('sentence', './text.json');
+    for(let i=0; i<8; i++){
+        gameScene.load.json(`${wordTypeArray[i]}`, `/json/wordTypes/${wordTypeArray[i]}.json`)
+    }
+
+    this.load.json('sentence', '/json/text.json');
 };
 
 gameScene.create = function(){
@@ -18,7 +23,6 @@ gameScene.create = function(){
     gameW = this.sys.game.config.width;
     gameH = this.sys.game.config.height;
 
-    phaserJSON = this.cache.json.get('text');
     sentenceJSON = this.cache.json.get('sentence');
 
     // Create a group that all the words will be contained in
@@ -33,13 +37,13 @@ gameScene.create = function(){
     this.physics.add.collider(this.player, this.words, logMsg);
 
     // Create a variable that stores our mouse input coordinates
-    this.mouse = this.input.mousePointer;
+    mouse = this.input.mousePointer;
 };
 
 gameScene.update = function() {
 
     // When you click on the screen the alien moves to the cursor location
-    if((gameScene.mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4)){
+    if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y)){
         gameScene.physics.moveTo(gameScene.player, gameScene.input.x, gameScene.input.y, 300);
     }
     else {
@@ -77,16 +81,24 @@ const postSentence = async () => {
 // Reset the words and alien location
 function reset(){
     // Create 8 random words and populate the screen with them
-    for (let i=0; i<8; i++){
-        let xArray = [1/10, 1/10, 1/3, 1/3, 3/5, 3/5, 4/5, 4/5];
-        let yArray = [1/3, 2/3, 1/8, 7/8, 1/8, 7/8, 1/3, 2/3];
+    for (let i=0; i<10; i++){
+        phaserJSON = gameScene.cache.json.get(`${wordTypeArray[i]}`);
 
-        let randomNumb = Math.floor(Math.random()*12447);
+        let xArray = [3, 3, 20, 20, 45, 45, 70, 70, 80, 80]; // Percent
+        let yArray = [33, 66, 12.5, 87.5, 12.5, 87.5, 12.5, 87.5, 33, 66]; // Percent
 
-        let text = gameScene.add.text(xArray[i]*gameW, yArray[i]*gameH, phaserJSON[randomNumb], {font: "20px Arial", fill: "rgb(0, 0, 0)"});
+        let randomNumb = Math.floor(Math.random()*phaserJSON.length);
+
+        let text = gameScene.add.text(xArray[i]*gameW/100, yArray[i]*gameH/100, phaserJSON[randomNumb], {font: "20px Arial", fill: "rgb(0, 0, 0)"});
+
+        if((i===8)||(i===9)){
+            text.x = (gameW - text.width - 15);
+        }
+
         text.immovable = true;
         gameScene.words.add(text);
     }
+    console.log(gameScene.words.children.entries[0].text);
 }
 
 let config = {
