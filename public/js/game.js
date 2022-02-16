@@ -76,7 +76,7 @@ gameScene.create = function(){
 gameScene.update = function() {
 
     // When you click on the screen the alien moves to the cursor location
-    if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y)){
+    if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y) && (gameScene.input.x < gameW-2) && (0 < gameScene.input.x)){
         gameScene.physics.moveTo(gameScene.player, gameScene.input.x, gameScene.input.y, 300);
     }
     else {
@@ -85,7 +85,7 @@ gameScene.update = function() {
 };
 
 // Append new word to our sentence string
-function logMsg(words){
+function logMsg(player, words){
     wordCount++;
     sentenceJSON.sentence = sentenceJSON.sentence + words.text + " ";
     sentenceDisplay.textContent = sentenceJSON.sentence;
