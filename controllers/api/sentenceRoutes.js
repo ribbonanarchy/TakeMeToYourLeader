@@ -1,19 +1,22 @@
 const router = require("express").Router();
-const { User, Sentence } = require("../../models");
+const Sentence = require("../../models/Sentence");
 const withAuth = require("../../utils/auth");
 
 // GET
 
 // POST
-router.post("/", withAuth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
+    console.log(req.body.sentence);
+
     const newSentence = await Sentence.create({
-      ...req.body,
-      user_id: req.session.user_id,
+      text: req.body.sentence,
+      user_id: 1,
     });
 
     res.status(200).json(newSentence);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -31,7 +34,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     });
 
     if (!sentenceData) {
-      res.status(404).json({ message: "No project found with this id!" });
+      res.status(404).json({ message: "No sentence found with this id!" });
       return;
     }
 
