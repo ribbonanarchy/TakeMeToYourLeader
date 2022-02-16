@@ -34,7 +34,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     });
 
     if (!sentenceData) {
-      res.status(404).json({ message: "No project found with this id!" });
+      res.status(404).json({ message: "No sentence found with this id!" });
       return;
     }
 
