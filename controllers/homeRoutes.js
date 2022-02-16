@@ -14,6 +14,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/about", async (req, res) => {
+  if (req.session.logged_in) {
+    res.render("about", {
+      logged_in: req.session.logged_in,
+    });
+    return;
+  } else {
+    res.render("about");
+    return;
+  }
+});
+
 // get the user's sentences
 router.get("/sentence", withAuth, async (req, res) => {
   try {
