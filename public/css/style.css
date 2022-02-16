@@ -64,3 +64,8 @@ header {
   color: var(--tertiarycolor);
   text-decoration: underline;
 }
+
+#game{
+  position: absolute;
+  top: 0px;
+}
