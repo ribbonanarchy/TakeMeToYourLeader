@@ -16,7 +16,14 @@ router.get("/", async (req, res) => {
 
 router.get("/about", async (req, res) => {
   if (req.session.logged_in) {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] }
+    });
+  
+    const user = userData.get({ plain: true });
+    
     res.render("about", {
+      ...user,
       logged_in: req.session.logged_in,
     });
     return;
