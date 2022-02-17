@@ -5,7 +5,16 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   if (req.session.logged_in) {
+
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+
+    const user = userData.get({ plain: true });
+
+    console.log(user.color);
     res.render("game", {
+      ...user,
       logged_in: req.session.logged_in,
     });
     return;
@@ -54,7 +63,16 @@ router.get("/sentence", withAuth, async (req, res) => {
 
 router.get("/game", async (req, res) => {
   if (req.session.logged_in) {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+
+    const user = userData.get({ plain: true });
+
+    console.log(user.color);
+
     res.render("game", {
+      ...user,
       logged_in: req.session.logged_in,
     });
     return;
