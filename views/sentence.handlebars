@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Greetings, {{name}}!</h2>
+    <br />
+    <h3>Earthly Proficiency </h3><h4>16%</h4>
+    <br />
+    <h3>Homeworld </h3><h4>Betelgeuse V</h4>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-auto" id="sentence-list">
+    {{#if sentences.length}}
+      <h3>Saved sentences</h3>
+      {{#each sentences as |sentence|}}
+        <div class="row mb-2">
+          <div class="col-md-8">
+            <h4>{{sentence.text}}</h4>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-sm" data-id="{{sentence.id}}">DELETE</button>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <h3>You have no saved sentences!</h3>
+    {{/if}}
+  </div>
+</div>
+
+<script src="./js/sentence.js"></script>

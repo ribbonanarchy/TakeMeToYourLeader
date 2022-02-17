@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: "Super secret secret",
+  secret: process.env.SESSION_SECRET,
   cookie: {
     // maxAge sets the maximum age for the session to be active. Listed in milliseconds.
     maxAge: 900000, // 15 min
