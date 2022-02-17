@@ -2,11 +2,33 @@
   <div class="col-auto">
     <h2>Greetings, {{name}}!</h2>
     <br />
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-auto">
     <h3>Earthly Proficiency </h3><h4>16%</h4>
     <br />
     <h3>Homeworld </h3><h4>Betelgeuse V</h4>
+    <br />
+    <h3>Color </h3><h4 id="current-color">{{color}}</h4>
+    <br />
+    <h3>Mood </h3><h4 id="current-mood">{{mood}}</h4>
   </div>
+
+  <div class="col-auto display-flex">
+    <div class="card m-auto" style="width: 40%; box-shadow: 0 0 5px 5px green; border-radius: 0.5rem;">
+      <img id="alien-image" class="card-img-top" style="max-width:100%" src="/images/{{mood}}/{{color}}.png" alt="Profile Alien">
+      <div class="card-body bg-white" style="border-radius: 0 0 0.5rem 0.5rem;">
+        <button onclick="changeColor()" class="btn btn-sm m-3">Color</button>
+        <button onclick="changeMood()" class="btn btn-sm m-3">Mood</button>
+      </div>
+    </div>
+  </div>
+
 </div>
+
 <br />
 <div class="row">
   <div class="col-auto" id="sentence-list">
@@ -18,7 +40,7 @@
             <h4>{{sentence.text}}</h4>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-sm" data-id="{{sentence.id}}">DELETE</button>
+            <button class="btn btn-sm " data-id="{{sentence.id}}">DELETE</button>
           </div>
         </div>
       {{/each}}

@@ -80,6 +80,38 @@ router.post("/logout", (req, res) => {
 
 // PUT
 
+// Update alien color
+router.put("/color", async (req, res) => {
+  try {
+    const newColor = await User.update(req.body, {
+        where: {
+          id: req.session.user_id,
+        },
+      });
+
+    res.status(200).json(newColor);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+// Update alien mood
+router.put("/mood", async (req, res) => {
+  try {
+    const newMood = await User.update(req.body, {
+      where: {
+        id: req.session.user_id,
+      },
+    });
+
+    res.status(200).json(newMood);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
 // DELETE
 
 module.exports = router;

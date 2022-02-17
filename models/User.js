@@ -27,6 +27,14 @@ User.init(
         len: [6],
       },
     },
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    mood: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     hooks: {

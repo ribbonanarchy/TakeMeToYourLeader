@@ -41,8 +41,11 @@ let nounEnd;
 
 gameScene.preload = function(){
 
-    this.load.image('player', '/assets/images/gray-alien.png');
-    this.load.image('enemy', '/assets/images/ball.png');
+    // this.load.json('imgURL', `/json/currentImg.json`);
+    // let imgUrlJSON = this.cache.json.get('imgURL');
+    // console.log(this.cache.json);
+
+    this.load.image('player', `/images/serious/gray.png`);
 
     for(let i=0; i<8; i++){
         gameScene.load.json(`${wordTypeArray[i]}`, `/json/wordTypes/${wordTypeArray[i]}.json`)
@@ -73,18 +76,18 @@ gameScene.create = function(){
     this.physics.add.collider(this.player, this.words, logMsg);
 
     // Create a variable that stores our mouse input coordinates
-    mouse = this.input.mousePointer;
+    // mouse = this.input.mousePointer;
+    mouse = this.input.activePointer;
 
     reset();
 };
 
 gameScene.update = function() {
+    mouse = this.input.activePointer;
 
     // When you click on the screen the alien moves to the cursor location
     if((mouse.isDown) && (Math.abs(gameScene.player.x - gameScene.input.x) > 4 || Math.abs(this.player.y - gameScene.input.y) > 4) && (gameScene.input.y < gameH) && (0 < gameScene.input.y) && (gameScene.input.x < gameW) && (0 < gameScene.input.x)){
         gameScene.physics.moveTo(gameScene.player, gameScene.input.x, gameScene.input.y, 300);
-        console.log("x: " + mouse.x)
-        console.log("y: " + mouse.y)
     }
     else {
         gameScene.player.setVelocity(0,0);
@@ -366,4 +369,3 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
-
