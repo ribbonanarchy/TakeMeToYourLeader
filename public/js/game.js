@@ -39,13 +39,12 @@ let verbRandomNumb = [];
 // Create var for end of noun word
 let nounEnd;
 
+let profileColor = document.getElementById('hidden-color').textContent;
+let profileMood = document.getElementById('hidden-mood').textContent;
+
 gameScene.preload = function(){
 
-    // this.load.json('imgURL', `/json/currentImg.json`);
-    // let imgUrlJSON = this.cache.json.get('imgURL');
-    // console.log(this.cache.json);
-
-    this.load.image('player', `/images/serious/gray.png`);
+    this.load.image('player', `/images/${profileMood}/${profileColor}.png`);
 
     for(let i=0; i<8; i++){
         gameScene.load.json(`${wordTypeArray[i]}`, `/json/wordTypes/${wordTypeArray[i]}.json`)

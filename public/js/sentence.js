@@ -69,7 +69,4 @@ const changeMood = async () => {
     body: JSON.stringify({ mood }),
     headers: { 'Content-Type': 'application/json' },
     });
-
 }
-
-module.exports = { mood, color };

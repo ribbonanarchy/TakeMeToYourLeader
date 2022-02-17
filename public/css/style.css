@@ -103,3 +103,13 @@ h3 {
 .m-auto {
   margin: auto;
 }
+
+#hidden-color{
+  visibility: hidden;
+  display: none;
+}
+
+#hidden-mood{
+  visibility: hidden;
+  display: none;
+}
