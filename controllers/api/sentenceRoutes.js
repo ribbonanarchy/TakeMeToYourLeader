@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
     const newSentence = await Sentence.create({
       text: req.body.sentence,
-      user_id: 1,
+      user_id: req.session.user_id,
     });
 
     res.status(200).json(newSentence);
@@ -34,7 +34,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     });
 
     if (!sentenceData) {
-      res.status(404).json({ message: "No project found with this id!" });
+      res.status(404).json({ message: "No sentence found with this id!" });
       return;
     }
 

@@ -2,22 +2,20 @@ const loginFormHandler = async (event) => {
   event.preventDefault();
 
   // Collect values from the login form
-  const email = document.querySelector("#email-login").value.trim();
+  const name = document.querySelector("#name-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
-  if (email && password) {
+  if (name && password) {
     // Send a POST request to the API endpoint
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/user/login", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, password }),
       headers: { "Content-Type": "application/json" },
     });
-
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace("/profile");
+      document.location.replace("/game");
     } else {
-      alert(response.statusText);
+      alert("Failed to login.");
     }
   }
 };
@@ -26,20 +24,19 @@ const signupFormHandler = async (event) => {
   event.preventDefault();
 
   const name = document.querySelector("#name-signup").value.trim();
-  const email = document.querySelector("#email-signup").value.trim();
   const password = document.querySelector("#password-signup").value.trim();
 
-  if (name && email && password) {
-    const response = await fetch("/api/users", {
+  if (name && password) {
+    const response = await fetch("/api/user", {
       method: "POST",
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, password }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace("/profile");
+      document.location.replace("/game");
     } else {
-      alert(response.statusText);
+      alert("Failed to sign up.");
     }
   }
 };
