@@ -22,7 +22,7 @@ Take Me to Your Leader is a web based game in which you control an alien that is
 <br>
 
 ## Deployed Link
-LINK HERE WHEN DEPLOYED
+[Click here](https://take-me-to-your-leader.herokuapp.com/login)
 <br>
 <br>
 
