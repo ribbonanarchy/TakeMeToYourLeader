@@ -18,6 +18,10 @@ Take Me to Your Leader is a web based game in which you control an alien that is
 <br>
 
 ## Screenshots
+![Homepage](./public/assets/images/homepage.PNG?raw=true "Homepage")
+![Game](./public/assets/images/game.PNG?raw=true "Game")
+![About](./public/assets/images/about.PNG?raw=true "About")
+![Profile](./public/assets/images/profile.PNG?raw=true "Profile")
 <br>
 <br>
 
