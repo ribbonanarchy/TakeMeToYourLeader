@@ -6,7 +6,7 @@ let sequelize;
 // create a connection object for the database
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL, {
-    host: 'i0rgccmrx3at3wv3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    host: 'eanl4i1omny740jw.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     dialect: 'mysql',
     dialectOptions: {
       decimalNumbers: true,
